@@ -65,6 +65,13 @@ local dark_theme = {
     TextBox_Underline_Color = Color3.fromRGB(255, 92, 92)
 }
 
+local destroyed
+
+if game.CoreGui:FindFirstChild('uiui') then
+    game.CoreGui:FindFirstChild('uiui'):Destroy()
+    destroyed = true
+end
+
 local function protect_gui(obj) 
   if destroyed then
     obj.Parent = game.CoreGui
@@ -79,8 +86,6 @@ local function protect_gui(obj)
     obj.Parent = game.CoreGui
   end
 end
-
-if game:GetService("CoreGui"):FindFirstChild("uiui") then game:GetService("CoreGui"):FindFirstChild("uiui"):Destroy() end
 
 local library = {}
 local uiui = Instance.new("ScreenGui")
