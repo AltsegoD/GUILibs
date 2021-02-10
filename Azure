@@ -420,7 +420,7 @@ function library:CreateTab(text, desc, mode)
 
         Slider.MouseButton1Down:Connect(function()
             down = true
-            Value = (((tonumber(maxvalue) - tonumber(minvalue)) / 172 * SliderInner.AbsoluteSize.X) +tonumber(minvalue)) or 0
+            Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 172) * SliderInner.AbsoluteSize.X) +tonumber(minvalue)) or 0
             SliderText.Text = text .. " / " .. Value
 			pcall(callback, Value)
             SliderInner:TweenSize(UDim2.new(0, math.clamp(mouse.X - SliderInner.AbsolutePosition.X, 0, 172), 0, 9), Enum.EasingDirection.InOut, Enum.EasingStyle.Linear, .07)
