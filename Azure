@@ -747,7 +747,7 @@ function library:CreateTab(text, desc, mode)
 		return TextBoxInfo
 	end
 	
-	function s:CreateLabel(text, color)
+    function s:CreateLabel(text)
 		text = text or ""
         callback = callback or function()
             end
@@ -760,7 +760,7 @@ function library:CreateTab(text, desc, mode)
         Label.Size = UDim2.new(0, 185, 0, 30)
         Label.Font = Enum.Font.SourceSansLight
         Label.Text = text
-        Label.TextColor3 = theme.Button_Text_Color
+        Label.TextColor3 = theme.Label_Text_Color
         Label.TextSize = 16.000
         resize(30)
     end
