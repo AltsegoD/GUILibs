@@ -5,6 +5,7 @@
  /(__)\  / /_  )(__)(  )   / )__) 
 (__)(__)(____)(______)(_)\_)(____) 
 
+Remake by egoD
               
 ]]--
 
@@ -64,6 +65,21 @@ local dark_theme = {
     TextBox_Underline_Color = Color3.fromRGB(255, 92, 92)
 }
 
+local function protect_gui(obj) 
+  if destroyed then
+    obj.Parent = game.CoreGui
+    return
+  end
+  if syn and syn.protect_gui then
+    syn.protect_gui(obj)
+    obj.Parent = game.CoreGui
+  elseif PROTOSMASHER_LOADED then
+    obj.Parent = get_hidden_gui()
+  else
+    obj.Parent = game.CoreGui
+  end
+end
+
 if game:GetService("CoreGui"):FindFirstChild("uiui") then game:GetService("CoreGui"):FindFirstChild("uiui"):Destroy() end
 
 local library = {}
@@ -78,6 +94,8 @@ uiui.Name = "uiui"
 uiui.Parent = game:GetService("CoreGui")
 uiui.DisplayOrder = 1
 
+protect_gui(uiui)
+
 background.Name = "background"
 background.Parent = uiui
 background.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -91,6 +109,16 @@ UIListLayout.Padding = UDim.new(0, 10)
 UIPadding.Parent = background
 UIPadding.PaddingLeft = UDim.new(0, 10)
 UIPadding.PaddingTop = UDim.new(0, 10)
+
+local keybindConnection
+if keybindConnection then keybindConnection:Disconnect() end
+game:GetService("UserInputService").InputBegan:Connect(function(input, gpe)
+keybindConnection = uis.InputBegan:Connect(function(input, gp)
+  if not gp and input.KeyCode == Enum.KeyCode[key] then
+    uiui.Enabled = not uiui.Enabled
+  end
+end)
+
 
 function library:CreateTab(text, desc, mode)
     text = text or ""
