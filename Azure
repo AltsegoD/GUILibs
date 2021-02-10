@@ -18,7 +18,7 @@ local theme = {
     Container_Color = Color3.fromRGB(255, 255, 255),
     Container_Text_Color = Color3.fromRGB(0, 0, 0),
     Button_Text_Color = Color3.fromRGB(0, 0, 0),
-	Label_Text_Color = Color3.fromRGB(0, 0, 0),
+    Label_Text_Color = Color3.fromRGB(0, 0, 0),
     Toggle_Box_Color = Color3.fromRGB(243, 243, 243),
     Toggle_Inner_Color = Color3.fromRGB(94, 255, 180),
     Toggle_Text_Color = Color3.fromRGB(0, 0, 0),
@@ -66,7 +66,6 @@ local dark_theme = {
 }
 
 local destroyed
-
 if game.CoreGui:FindFirstChild('uiui') then
     game.CoreGui:FindFirstChild('uiui'):Destroy()
     destroyed = true
@@ -116,14 +115,17 @@ UIPadding.PaddingLeft = UDim.new(0, 10)
 UIPadding.PaddingTop = UDim.new(0, 10)
 
 local keybindConnection
-if keybindConnection then keybindConnection:Disconnect() end
+if keybindConnection then
+ keybindConnection:Disconnect()
+end
+local uis = game:GetService("UserInputService")
 game:GetService("UserInputService").InputBegan:Connect(function(input, gpe)
-keybindConnection = uis.InputBegan:Connect(function(input, gp)
-  if not gp and input.KeyCode == Enum.KeyCode[key] then
-    uiui.Enabled = not uiui.Enabled
-  end
+ keybindConnection = uis.InputBegan:Connect(function(input, gp)
+   if not gp and input.KeyCode == Enum.KeyCode.G then
+     uiui.Enabled = not uiui.Enabled
+   end
+ end)
 end)
-
 
 function library:CreateTab(text, desc, mode)
     text = text or ""
