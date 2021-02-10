@@ -5,6 +5,7 @@
  /(__)\  / /_  )(__)(  )   / )__) 
 (__)(__)(____)(______)(_)\_)(____) 
 
+Remake by egoD
               
 ]]--
 
@@ -96,7 +97,7 @@ game:GetService("UserInputService").InputBegan:Connect(function(input, gpe)
     if not gpe and input.KeyCode == Enum.KeyCode.G then
        uiui.Enabled = not uiui.Enabled
     end
-end
+end)
 
 function library:CreateTab(text, desc, mode)
     text = text or ""
