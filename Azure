@@ -17,6 +17,7 @@ local theme = {
     Container_Color = Color3.fromRGB(255, 255, 255),
     Container_Text_Color = Color3.fromRGB(0, 0, 0),
     Button_Text_Color = Color3.fromRGB(0, 0, 0),
+	Label_Text_Color = Color3.fromRGB(0, 0, 0),
     Toggle_Box_Color = Color3.fromRGB(243, 243, 243),
     Toggle_Inner_Color = Color3.fromRGB(94, 255, 180),
     Toggle_Text_Color = Color3.fromRGB(0, 0, 0),
@@ -44,6 +45,7 @@ local dark_theme = {
     Container_Color = Color3.fromRGB(31, 32, 33),
     Container_Text_Color = Color3.fromRGB(255, 255, 255),
     Button_Text_Color = Color3.fromRGB(255, 255, 255),
+	Label_Text_Color = Color3.fromRGB(255, 255, 255),
     Toggle_Box_Color = Color3.fromRGB(31, 32, 33),
     Toggle_Inner_Color = Color3.fromRGB(255, 92, 92),
     Toggle_Text_Color = Color3.fromRGB(255, 255, 255),
@@ -75,14 +77,12 @@ local TweenService = game:GetService("TweenService")
 uiui.Name = "uiui"
 uiui.Parent = game:GetService("CoreGui")
 uiui.DisplayOrder = 1
-uiui.Draggable = true
 
 background.Name = "background"
 background.Parent = uiui
 background.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 background.BackgroundTransparency = 1.000
 background.Size = UDim2.new(0, 1234, 0, 664)
-background.Draggable = true
 
 UIListLayout.Parent = background
 UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
@@ -746,6 +746,25 @@ function library:CreateTab(text, desc, mode)
 
 		return TextBoxInfo
 	end
+	
+	function s:CreateLabel(text, color)
+		text = text or ""
+        callback = callback or function()
+            end
+        local Label = Instance.new("TextLabel")
+        Label.Name = text
+        Label.Parent = container
+        Label.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        Label.BackgroundTransparency = 1.000
+        Label.Position = UDim2.new(0, 0, 0.777777851, 0)
+        Label.Size = UDim2.new(0, 185, 0, 30)
+        Label.Font = Enum.Font.SourceSansLight
+        Label.Text = text
+        Label.TextColor3 = theme.Button_Text_Color
+        Label.TextSize = 16.000
+        resize(30)
+    end
+	
     return s
 end
 return library
